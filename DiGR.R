@@ -47,3 +47,25 @@ FunctionsAdjacent <- function(x) {
   }
   return(adj.mat)
 }
+
+FunctionsDigraph <- function(x) {
+  # Plots a direction graph indicating how functions call each other.
+  # Args:
+  #  x, a character of function names to evaluate. Place the root object first.
+  # Returns {nothing}
+  
+  x.mat       <- FunctionsAdjacent(x)  # Create adjacency matrix
+  x.g         <- graph.adjacency(x.mat)  # Create digraph
+  # The next two lines flip the edge directions
+  el          <- get.edgelist(x.g, names = F)
+  x.g         <- graph(rbind(el[,2],el[,1]))
+  x.g$weight  <- 1  # weight each count in the matrix equally
+  x.g         <- simplify(x.g)
+  V(x.g)$name <- x  # decorate vertices with the function names
+  colour      <- c("tomato", rep("tan1", length(x) - 1))
+  plot(x.g, edge.arrow.size = 0.25,
+       vertex.color = colour,
+       vertex.size = 28,
+       vertex.label.cex = 0.75,
+       vertex.label.color = "black")
+}
