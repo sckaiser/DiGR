@@ -69,3 +69,16 @@ FunctionsDigraph <- function(x) {
        vertex.label.cex = 0.75,
        vertex.label.color = "black")
 }
+
+GetFunctions <- function(exclude = NA, path = getwd()) {
+  # Returns a list of R functions in a directory, assuming each function
+  # is in its own .R or .r file.
+  # Args:
+  #  exclude, a list of filenames to exclude. 
+  #  path, a directory.
+  
+  pattern <- "[.][Rr]$"
+  files   <- list.files(path, pattern)
+  files   <- files[!files %in% exclude]
+  gsub(pattern, "", files)  # strip the .r & return the function names
+}
