@@ -82,3 +82,7 @@ GetFunctions <- function(exclude = NA, path = getwd()) {
   files   <- files[!files %in% exclude]
   gsub(pattern, "", files)  # strip the .r & return the function names
 }
+
+# Self-referential example:
+x <- c("FunctionsDigraph", "StringToObject", "FuncToChar", "FunctionsAdjacent")
+FunctionsDigraph(x)
