@@ -55,7 +55,7 @@ FunctionsDigraph <- function(x) {
   # Returns {nothing}
   
   x.mat       <- FunctionsAdjacent(x)  # Create adjacency matrix
-  x.g         <- from_adjacency(x.mat, mode = "directed", diag = F)
+  x.g         <- graph_from_adjacency_matrix(x.mat, mode = "directed", diag = F)
   # The next two lines flip the edge directions
   el          <- get.edgelist(x.g, names = F)
   x.g         <- graph(rbind(el[,2],el[,1]))
