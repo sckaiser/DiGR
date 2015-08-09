@@ -9,7 +9,8 @@ I often find it useful to visualize how a set of functions which are typically c
 to be added...
 
 ## Getting Started
-to be added...
+Run the script DiGR.R; at the end, it will produce a directional graph of how the different functions in DiGR call each other.
+[A real-world example.](https://github.com/sckaiser/BlindDate/blob/master/Digraph_functions.png) is provided to help visualize the code; I update it on an ad hoc basis.
 
 ## Dependencies
 igraph
