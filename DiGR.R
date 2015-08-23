@@ -62,9 +62,9 @@ FunctionsDigraph <- function(x) {
   x.g$weight  <- 1  # weight each count in the matrix equally
   x.g         <- simplify(x.g)
   V(x.g)$name <- x  # decorate vertices with the function names
-  colour      <- c("tomato", rep("tan1", length(x) - 1))
+  color      <- c("tomato", rep("tan1", length(x) - 1))
   plot(x.g, edge.arrow.size = 0.25,
-       vertex.color = colour,
+       vertex.color = color,
        vertex.size = 28,
        vertex.label.cex = 0.75,
        vertex.label.color = "black")
