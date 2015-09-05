@@ -48,10 +48,13 @@ FunctionsAdjacent <- function(x) {
   return(adj.mat)
 }
 
-FunctionsDigraph <- function(x) {
+FunctionsDigraph <- function(x, root = 1L) {
   # Plots a direction graph indicating how functions call each other.
   # Args:
-  #  x, a character of function names to evaluate. Place the root object first.
+  #  x, a character of function names to evaluate.
+  #  root, an integer indicating which function(s) are 'root' functions.
+  #        Root functions differ only in their plot color. Use 0 to
+  #        indicate no root functions.
   # Returns {nothing}
   
   x.mat       <- FunctionsAdjacent(x)  # Create adjacency matrix
@@ -62,7 +65,8 @@ FunctionsDigraph <- function(x) {
   x.g$weight  <- 1  # weight each count in the matrix equally
   x.g         <- simplify(x.g)
   V(x.g)$name <- x  # decorate vertices with the function names
-  color      <- c("tomato", rep("tan1", length(x) - 1))
+  color       <- rep("tan1", length(x))
+  color[root] <- "tomato"  # change root nodes' color 
   plot(x.g, edge.arrow.size = 0.25,
        vertex.color = color,
        vertex.size = 28,
