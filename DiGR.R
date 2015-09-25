@@ -66,6 +66,13 @@ FunctionsDigraph <- function(x, root = 1L) {
   x.g         <- simplify(x.g)
   V(x.g)$name <- x  # decorate vertices with the function names
   color       <- rep("tan1", length(x))
+  if (is.character(root)) {
+    root.f    <- which(x %in% root)
+    if (length(root) != length(root.f)) {
+      warning(paste("Function", setdiff(root, x), "not found "))
+    }
+    root      <- root.f
+  }
   color[root] <- "tomato"  # change root nodes' color 
   plot(x.g, edge.arrow.size = 0.25,
        vertex.color = color,
@@ -88,5 +95,5 @@ GetFunctions <- function(exclude = NA, path = getwd()) {
 }
 
 # Self-referential example:
-x <- c("FunctionsDigraph", "StringToObject", "FuncToChar", "FunctionsAdjacent")
-FunctionsDigraph(x)
+x <- c("FunctionsAdjacent", "FuncToChar", "FunctionsDigraph", "StringToObject")
+FunctionsDigraph(x, "FunctionsDigraph")
